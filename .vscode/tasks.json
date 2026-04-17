@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build MCP Server",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "/Users/kmariyan/Dev/dotnet-mcp-rag-demo/src/mcp/DotNetConf.Mcp.csproj",
+        "--verbosity",
+        "quiet"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Run MCP Inspector",
+      "type": "shell",
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/inspector",
+        "dotnet",
+        "run",
+        "--project",
+        "/Users/kmariyan/Dev/dotnet-mcp-rag-demo/src/mcp/DotNetConf.Mcp.csproj",
+      ],
+      "dependsOn": "Build MCP Server",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
