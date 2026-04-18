@@ -42,6 +42,12 @@ public sealed class SqliteJobStore(string databasePath)
         await _vectorCollection.EnsureCollectionExistsAsync(cancellationToken);
     }
 
+    public Task UpsertAsync(
+        DevBgJobPosting posting,
+        JobVectorIndexResult result,
+        CancellationToken cancellationToken) =>
+        UpsertAsync(posting, result.Documents, cancellationToken);
+
     public async Task UpsertAsync(
         DevBgJobPosting posting,
         IReadOnlyList<JobChunkDocument> documents,
